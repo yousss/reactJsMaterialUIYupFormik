@@ -11,6 +11,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormGroup from '@material-ui/core/FormGroup'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,7 @@ export default function Header() {
   const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const { i18n } = useTranslation()
 
   const handleChange = (event) => {
     setAuth(event.target.checked)
@@ -41,7 +43,7 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null)
   }
-
+  const href = '#'
   return (
     <div className={classes.root}>
       <FormGroup>
@@ -55,6 +57,13 @@ export default function Header() {
           }
           label={auth ? 'Logout' : 'Login'}
         />
+        <a href={href} onClick={() => i18n.changeLanguage('en')}>
+          English
+        </a>
+        &nbsp;
+        <a href={href} onClick={() => i18n.changeLanguage('fr')}>
+          Francais
+        </a>
       </FormGroup>
       <AppBar position="static">
         <Toolbar>
